@@ -15,7 +15,7 @@ var g2= 3.16667*XA_2+6.66667*XB_2;
 var g3= 10.6667*XA_3+11.25*XB_3;
  
 #wartosc docelowa ryzyka
-minimize ryzyko: (g1+g2+g3)/3;
+minimize ryzyko: (g1+g2+g3);
 
 subject to LimitDostawKompA: XA_1+XA_2+XA_3=1100;
 subject to LimitDostawKompB: XB_1+XB_2+XB_3=1200;
