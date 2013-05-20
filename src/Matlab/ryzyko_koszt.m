@@ -1,7 +1,7 @@
 
 clear;
 skok=100;
-skok_maly=20;
+skok_maly=50;
 i=1; 
 for XA_1=0:skok:1200
     fprintf('X');
