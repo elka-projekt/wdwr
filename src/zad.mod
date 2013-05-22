@@ -4,8 +4,8 @@ reset;
 option solver cplex;  
 
 #dodane wagi
-param w1 = 0.05;
-param w2 = 0.03;
+param wk = 1;
+param wr = 2;
 
 
 
@@ -44,16 +44,16 @@ var k2 = 33*XA_2 +   47*XB_2 + (33*XA_1s +   47*XB_1s)*0.1 + (33*XA_1p + 47  *XB
 var k3 = 43*XA_3 + 42.5*XB_3 + (43*XA_2s + 42.5*XB_2s)*0.1 + (43*XA_2p + 42.5*XB_2p)*0.15 ;
 
 #ryzyko - srednia roznica Giniego dla poszczegolnych miesiecy
-var g1= 11.5*XA_1+6.08333*XB_1;
-var g2= 3.16667*XA_2+6.66667*XB_2;
-var g3= 10.6667*XA_3+11.25*XB_3;
+var g1= 10.8*XA_1 + 11.3*XB_1;
+var g2= 16.4*XA_2 + 13.8*XB_2;
+var g3= 9.2*XA_3 + 9.7*XB_3;
 
 
 #zeby mozna bylo uzyc, a na koniec wypisac wartosci obu funkcji celu to var
 var koszt = k1 + k2 + k3;
 var ryzyko = (g1+g2+g3)/3;
 #nowa, laczna funkcja celu
-minimize cel: w1*koszt + w2*ryzyko;
+minimize cel: wk*koszt + wr*ryzyko;
 
 
 
@@ -88,8 +88,8 @@ display XB_2s;
 display XA_2p;
 display XB_2p;
 
-display w1;
-display w2;
+display wk;
+display wr;
 display XA_1;
 display XB_1;
 display XA_2;
