@@ -1,0 +1,26 @@
+reset;
+option solver cplex;
+model model.mod;
+data data.dat;
+
+param n = 100; #liczba probek
+
+
+for {i in 1 .. n}
+{
+    let wr := (i-1)/(n-1);
+    let wk := 1 - wr;
+    solve cel;
+    
+    
+    printf "%d   wr=%2.4f wk=%2.4f   ryzyko=%2.2f koszt=%2.2f", i, wr, wk, ryzyko, koszt;
+    
+    
+    printf "     X=   [   " ;
+    for {m in MIESIACE, r in PRODUKTY }
+    {
+	printf "%d   ", x[r, m] ;
+    }
+    printf "] \n" ;
+    
+}
