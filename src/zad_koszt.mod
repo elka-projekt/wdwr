@@ -29,16 +29,20 @@ var k3 = 43*XA_3 + 42.5*XB_3 ;
 
 
 #zmienne skladowania komponentow
-var S1  = XA_1 + XB_1;
-var S2 = XA_1 + XB_1+XA_2 + XB_2;
+
+var U1  = XA_1 + XB_1;
+var U2 = XA_1 + XA_2;
 
 #wartosc oczekiwana kosztu produkcji miesiecznej- koszt 1 sztuki dla 2 i 3 miesiaca - wartosc stala  ---> jakiekolwiek dzielenia k1/(X...) wprowadzaja nieliniowosc
 
-param w2=(0.2*55+ 0.5*20+ 0.1*60+ 0.2*30 + 0.2*65+0.5*35+0.1*45+0.2*60)/2;
-param w3=(0.2*35+ 0.5*45+ 0.1*25+ 0.2*55+0.2*30+ 0.5*50+ 0.1*25+ 0.2*45)/2;
+param WA_2=(0.2*55+ 0.5*20+ 0.1*60+ 0.2*30 );
+param WB_2=(0.2*65+0.5*35+0.1*45+0.2*60);
+
+param WA_3=(0.2*35+ 0.5*45+ 0.1*25+ 0.2*55 );
+param WB_3=(0.2*30+ 0.5*50+ 0.1*25+ 0.2*45);
 
 #laczna funkcja celu - !!! skladowanie -miesieczne koszty wytwarzania to po prostu wartosc oczekiwana z danego miesiaca 
-minimize koszt: (k1+k2 + k3) + w2* <<100;0.1,0.15>> S1  + w3  *<<100;0.1,0.15>> S2; 
+minimize koszt: (k1+k2 + k3) + WA_2* <<100;0.1,0.15>> XA_1  + WB_2 *<<100;0.1,0.15>> XB_1 + WA_3 *<<100;0.1,0.15>>  U1 + WB_3 *<<100;0.1,0.15>>  U1; 
 
 
 
