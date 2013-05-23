@@ -2,13 +2,13 @@
 set PRODUKTY;
 set MIESIACE;
 set ZASOBY;
-set PRAWD;
+set SCENARIUSZE;
 
 
 #Deklaracja parametrow
 
 #prawdopodobienstow wystapienia scenariusza
-param P {PRAWD};
+param P {SCENARIUSZE};
 
 
 param progZmianyKosztowSkladowania;
@@ -30,14 +30,14 @@ param dostawy {ZASOBY, MIESIACE};
 param skladowanie {MIESIACE};
 
 #koszty produkcji 
-param kp {PRAWD, PRODUKTY, MIESIACE};
+param kp {SCENARIUSZE, PRODUKTY, MIESIACE};
 
 #srednie koszty produkcji produktu w danym miesiacu - wartosci oczekiwanie kosztow  
-param skp {r in PRODUKTY, m in MIESIACE} = sum {p in PRAWD} kp[p, r, m] * P[p];
+param skp {p in PRODUKTY, m in MIESIACE} = sum {s in SCENARIUSZE} kp[s, p, m] * P[s];
 
 
 #srednie roznice giniego dla kazdego produktu w danym miesiacu
-var gini {r in PRODUKTY, m in MIESIACE} = sum {p1 in PRAWD, p2 in PRAWD} abs(kp[p1, r, m] - kp[p2, r, m]) * P[p1] * P[p2];
+var gini {p in PRODUKTY, m in MIESIACE} = sum {s1 in SCENARIUSZE, s2 in SCENARIUSZE} abs(kp[s1, p, m] - kp[s2, p, m]) * P[s1] * P[s2];
 
 
 #wagi ryzyka i kosztu
@@ -52,21 +52,21 @@ var x{PRODUKTY, MIESIACE} integer >= 0;
 
 
 #koszt wytworzenia + koszt skladowania
-var koszt  = sum{r in PRODUKTY, m in MIESIACE} (skp[r, m] *x[r, m]) + 
-             sum{r in PRODUKTY, m in MIESIACE} (skladowanie[m] * skp[r, m]* <<progZmianyKosztowSkladowania; skladowaniePodProgiem, skladowanieNadProgiem>> x[r, m]);
+var koszt  = sum{p in PRODUKTY, m in MIESIACE} (skp[p, m] *x[p, m]) + 
+             sum{p in PRODUKTY, m in MIESIACE} (skladowanie[m] * skp[p, m]* <<progZmianyKosztowSkladowania; skladowaniePodProgiem, skladowanieNadProgiem>> x[p, m]);
              
-var ryzyko = sum{r in PRODUKTY, m in MIESIACE} (gini[r, m]*x[r, m]);
+var ryzyko = sum{p in PRODUKTY, m in MIESIACE} (gini[p, m]*x[p, m]);
 
 
 
 #Ograniczenia
 
 
-s.t. WypelnienieKontraktu {r in PRODUKTY}:  
-     kontrakt[r] = sum {m in MIESIACE} x[r, m];
+s.t. WypelnienieKontraktu {p in PRODUKTY}:  
+     kontrakt[p] = sum {m in MIESIACE} x[p, m];
      
 s.t. LimityDostaw {z in ZASOBY, m in MIESIACE}: 
-     sum {r in PRODUKTY} potrzeby[z, r]*x[r, m]  <= dostawy[z, m];
+     sum {p in PRODUKTY} potrzeby[z, p]*x[p, m]  <= dostawy[z, m];
      
 
      

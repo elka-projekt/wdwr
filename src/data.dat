@@ -4,7 +4,7 @@ set MIESIACE := 1 2 3;
 
 set ZASOBY := Z1 Z2;
 
-set PRAWD := 1 2 3 4;
+set SCENARIUSZE := 1 2 3 4;
 
 param progZmianyKosztowSkladowania := 100;
 param skladowaniePodProgiem := 0.1;
