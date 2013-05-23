@@ -11,6 +11,11 @@ set PRAWD;
 param P {PRAWD};
 
 
+param progZmianyKosztowSkladowania;
+param skladowaniePodProgiem;
+param skladowanieNadProgiem;
+
+
 #tyle musi firma dostarczyk produktow
 param kontrakt {PRODUKTY};
 
@@ -41,12 +46,15 @@ param wr;
 
 
 
+
 #zmienne decyzyjne - liczba produktow wyprodukowanych w poszczegolnych miesiacach
 var x{PRODUKTY, MIESIACE} integer >= 0;
 
 
 #koszt wytworzenia + koszt skladowania
-var koszt  = sum{r in PRODUKTY, m in MIESIACE} (skp[r, m] *x[r, m]) + sum{r in PRODUKTY, m in MIESIACE} (skladowanie[m] * skp[r, m]* <<100; 0.1, 0.15 >> x[r, m]);
+var koszt  = sum{r in PRODUKTY, m in MIESIACE} (skp[r, m] *x[r, m]) + 
+             sum{r in PRODUKTY, m in MIESIACE} (skladowanie[m] * skp[r, m]* <<progZmianyKosztowSkladowania; skladowaniePodProgiem, skladowanieNadProgiem>> x[r, m]);
+             
 var ryzyko = sum{r in PRODUKTY, m in MIESIACE} (gini[r, m]*x[r, m]);
 
 

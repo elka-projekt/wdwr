@@ -6,7 +6,9 @@ set ZASOBY := Z1 Z2;
 
 set PRAWD := 1 2 3 4;
 
-
+param progZmianyKosztowSkladowania := 100;
+param skladowaniePodProgiem := 0.1;
+param skladowanieNadProgiem := 0.15;
 
 
 param P := 1 0.2 
