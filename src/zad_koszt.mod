@@ -38,7 +38,7 @@ param w2=(0.2*55+ 0.5*20+ 0.1*60+ 0.2*30 + 0.2*65+0.5*35+0.1*45+0.2*60)/2;
 param w3=(0.2*35+ 0.5*45+ 0.1*25+ 0.2*55+0.2*30+ 0.5*50+ 0.1*25+ 0.2*45)/2;
 
 #laczna funkcja celu - !!! skladowanie -miesieczne koszty wytwarzania to po prostu wartosc oczekiwana z danego miesiaca 
-minimize koszt: (k1+k2 + k3) + w2*<<100;0.1,0>> S1 + w2* <<100;0,0.15>> S1 + w3 * <<100;0.1,0>> S2 + w3 * <<100;0,0.15>> S2; 
+minimize koszt: (k1+k2 + k3) + w2* <<100;0.1,0.15>> S1  + w3  *<<100;0.1,0.15>> S2; 
 
 
 
