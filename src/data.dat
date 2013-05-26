@@ -30,13 +30,10 @@ param dostawy :   1     2     3   :=
               Z2  1400  900   1200;  
 
               
-param skladowanie1 := 1 1
-                     2 0
-                     3 0;
- 
-param skladowanie2 := 1 1
+param skladowanie := 1 2
                      2 1
-                     3 0; 
+                     3 0;
+                     
                      
                      
 #koszty produkcji

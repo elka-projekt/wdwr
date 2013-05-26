@@ -16,10 +16,16 @@ for {i in 1 .. n}
     printf "%d   wr=%2.4f wk=%2.4f   ryzyko=%2.2f koszt=%2.2f", i, wr, wk, ryzyko, koszt;
     
     
-    printf "     X=   [   " ;
+    printf " X=[   " ;
     for {m in MIESIACE, r in PRODUKTY }
     {
-	printf "%d   ", x[r, m] ;
+	printf "%d ", x[r, m] ;
+    }
+    printf "]  " ;
+	printf " f=[   " ;
+    for {s in SCENARIUSZE}
+    {
+	printf "%2.2f ", f[s] ;
     }
     printf "] \n" ;
     
