@@ -20,25 +20,32 @@ z3=[0.1 0.3 0.8 1];
 
  xlim([r1(1)-10000 ,r1(4)+10000])
  ylim([0 ,1.2]) 
+ 
 hold all;
  end
-  plot([r1(4),r1(4)+ 10000],[1,1],'r','LineWidth',3)
+ h1= plot([r1(4),r1(4)+ 10000],[1,1],'r','LineWidth',3)
   
   for i =1:3
  plot([r2(i),r2(i+1) ],[z2(i),z2(i)],'g','LineWidth',3)
  xlim([r2(1)-10000 ,r2(4)+10000])
  ylim([0 ,1.2]) 
+  
 hold all;
  end
-  plot([r2(4),r2(4)+ 10000],[1,1],'g','LineWidth',3)
+ h2= plot([r2(4),r2(4)+ 10000],[1,1],'g','LineWidth',3)
   
     for i =1:3
  plot([r3(i),r3(i+1) ],[z3(i),z3(i)],'b')
  xlim([r3(1)-10000 ,r3(4)+10000])
  ylim([0 ,1.2]) 
+
 hold all;
  end
-  plot([r3(4),r3(4)+ 10000],[1,1],'b')
+ h3= plot([r3(4),r3(4)+ 10000],[1,1],'b')
+  
+    legend([h1 h2 h3],'f1','f2','f3');
+	title('FSD','FontWeight','bold')
+xlabel('x');
 
 
 
